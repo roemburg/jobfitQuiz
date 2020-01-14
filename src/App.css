@@ -1,24 +1,79 @@
+html {
+  background-image: ;
+}
+
+html,
+.container,
+.App-header {
+  background-color: #fbe376;
+}
+
+.container div {
+  background-color: white;
+  padding-bottom: 2rem;
+}
+
 .App-logo {
-  animation: spin infinite 20s linear;
-  height: 80px;
+  height: 20px;
 }
 
 .App-header {
-  background-color: #222;
-  padding: 20px;
-  color: white;
+  background-color: #fbe376;
+  padding: 1rem;
+  color: #003366;
   text-align: center;
 }
 
 .App-intro {
-  font-size: large;
+  font-size: 1rem;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.container {
+  max-width: 30rem;
+}
+
+.questionCount {
+  color: #666;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Saira";
+  line-height: 1.2;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  /* text-transform: uppercase; */
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+button {
+  padding: 1rem 2rem;
+  border-radius: 0.35em;
+  font-size: 1.2em;
+  font-weight: 900;
+  background-color: rgb(255, 105, 90);
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+  .App-logo {
+    width: 200px;
   }
 }
