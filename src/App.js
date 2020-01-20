@@ -1,9 +1,19 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import ReactGA from "react-ga";
+import { createBrowserHistory } from "history";
+import { Router } from "react-router-dom";
 import quizQuestions from "./api/quizQuestions";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
 import logo from "./svg/logo.svg";
 import "./App.css";
+
+let checkExist;
+const history = createBrowserHistory();
+const trackingId = "GTM-K968CFQ";
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +44,7 @@ class App extends Component {
   addform = id => {
     const script = document.createElement("script");
     script.src = "https://thejobfitters.activehosted.com/f/embed.php?id=" + id;
+    console.log(script.src);
     script.async = true;
     document.body.appendChild(script);
   };
@@ -114,24 +125,42 @@ class App extends Component {
     );
   }
 
-  renderResult(id) {
+  formScore = score => {
+    let testScore;
+    if (
+      document.getElementsByTagName("form") &&
+      document.querySelector('[data-name="testscore"]')
+    ) {
+      testScore = document.querySelector(
+        '[data-name="testscore"]'
+      ).value = score;
+      console.log("Form exists, set hidden field testscore: " + testScore);
+      clearInterval(checkExist);
+    }
+  };
+
+  renderResult(score) {
     let formId;
 
-    if (id <= 12) {
+    checkExist = setInterval(() => {
+      this.formScore(score);
+    }, 100); // check every 100ms if ActiveCampaign form has rendered before setting hidden testscore field
+
+    if (score <= 12) {
       formId = 5;
     }
-
-    if (id > 12 && id < 24) {
+    if (score >= 13 && score <= 24) {
       formId = 7;
     }
-
-    if (id > 24 && id < 36) {
+    if (score >= 24 && score <= 36) {
       formId = 9;
     }
-    if (id > 37 && id < 48) {
+    if (score >= 37 && score <= 48) {
       formId = 11;
     }
 
+    console.log("SCORE: " + score);
+    console.log("FORM ID: " + formId);
     this.addform(formId);
     return <div className={"_form_" + formId} />;
   }
