@@ -139,30 +139,28 @@ class App extends Component {
     }
   };
 
-  renderResult(score) {
+
+
+  renderResult(id) {
     let formId;
 
-    checkExist = setInterval(() => {
-      this.formScore(score);
-    }, 100); // check every 100ms if ActiveCampaign form has rendered before setting hidden testscore field
-
-    if (score <= 12) {
-      formId = 5;
-    }
-    if (score >= 13 && score <= 24) {
-      formId = 7;
-    }
-    if (score >= 24 && score <= 36) {
-      formId = 9;
-    }
-    if (score >= 37 && score <= 48) {
-      formId = 11;
+    if(id <= 8 && id >= 0){
+      formId=5;
     }
 
-    console.log("SCORE: " + score);
-    console.log("FORM ID: " + formId);
+    if(id >= 9 && id < 16 ){
+      formId=7;
+    }
+
+    if(id > 17 && id < 24 ){
+      formId=9;
+    }
+    if(id > 25 && id < 32 ){
+      formId=11;
+    }
+
     this.addform(formId);
-    return <div className={"_form_" + formId} />;
+    return  <div className={"_form_"+formId} />;
   }
 
   renderWelcome = () => {
