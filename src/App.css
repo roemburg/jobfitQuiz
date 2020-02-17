@@ -1,16 +1,18 @@
-html {
-  background-image: ;
+#root {
+  min-height: 100vh;
 }
 
 html,
 .container,
 .App-header {
-  background-color: #fbe376;
+  /* background-color: #eee; */
+}
+
+.App {  
 }
 
 .container div {
-  background-color: white;
-  padding-bottom: 2rem;
+
 }
 
 .App-logo {
@@ -18,9 +20,9 @@ html,
 }
 
 .App-header {
-  background-color: #fbe376;
+  /* background-color: #eee; */
   padding: 1rem;
-  color: #003366;
+  color: #111;
   text-align: center;
 }
 
@@ -28,8 +30,20 @@ html,
   font-size: 1rem;
 }
 
+.intro {
+  background: url('https://thejobfitters.nl/wp-content/uploads/quiz-bg.jpg');
+  background-size: cover, contain;
+  background-repeat: no-repeat;
+  min-height: calc(100vh - (20px + 2rem)) ;
+  /* background-color: rgba(238,238,238, 0.3); */
+  /* background-color: red; */
+}
+
+.outro {
+  content: 'antwoorden verwerken…';
+}
 .container {
-  max-width: 30rem;
+  /* max-width: 30rem; */
 }
 
 .questionCount {
@@ -75,5 +89,10 @@ button {
 @media (min-width: 320px) and (max-width: 480px) {
   .App-logo {
     width: 200px;
+  }
+
+  html {
+    background-image: none;
+    background-color: white;
   }
 }

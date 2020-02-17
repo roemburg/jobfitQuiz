@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import ReactGA from "react-ga";
 import { createBrowserHistory } from "history";
 import { Router } from "react-router-dom";
+import quizAnswers from './api/quizAnswers';
 import quizQuestions from "./api/quizQuestions";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
@@ -37,7 +38,7 @@ class App extends Component {
   componentDidMount() {
     this.setState({
       question: quizQuestions[0].question,
-      answerOptions: quizQuestions[0].answers
+      answerOptions: quizAnswers
     });
   }
 
@@ -98,7 +99,7 @@ class App extends Component {
       counter: counter,
       questionId: questionId,
       question: quizQuestions[counter].question,
-      answerOptions: quizQuestions[counter].answers,
+      answerOptions: quizAnswers,
       answer: ""
     });
   }
@@ -139,56 +140,49 @@ class App extends Component {
     }
   };
 
-
-
-  renderResult(id) {
+  renderResult(score) {
     let formId;
 
-    if(id <= 8 && id >= 0){
-      formId=5;
+    score -= 5; // minus N questions for 5x 0 score bug and starting lowest anwsers value at 1 
+
+    checkExist = setInterval(() => {	
+      this.formScore(score);	
+    }, 100); // check every 100ms if ActiveCampaign form has rendered before setting hidden testscore field
+    
+    if (score <= 5) {
+      formId = 5;
+    } else if (score <= 10) {
+      formId = 7;
+    } else if (score <= 15) {
+      formId = 9;
+    } else {
+      formId = 11;
     }
 
-    if(id >= 9 && id < 16 ){
-      formId=7;
-    }
-
-    if(id > 17 && id < 24 ){
-      formId=9;
-    }
-    if(id > 25 && id < 32 ){
-      formId=11;
-    }
-
+    console.log('SCORE: ' + score);
+    console.log('FORM ID: ' + formId);
     this.addform(formId);
-    return  <div className={"_form_"+formId} />;
+    return  (<div className={"outro _form_"+formId} />);
   }
 
   renderWelcome = () => {
     return (
-      <div className="App-header">
-        <div class="container">
-          <h1>JobFit Test​</h1>
+      <div className='App-header intro'>
+        <div className='container'>
+          <h1>Hoeveel voldoening haal jij uit je werk?</h1>
 
           <h2>
-            The Jobfitters heeft als missie om zoveel mogelijk mensen in
-            Nederland te helpen aan een baan waar ze met plezier naartoe gaan!
+            Met deze test ontdek jij of jouw job eigenlijk wel bij je past.​
           </h2>
 
-          <p>
-            Met deze quiz willen we jou helpen te reflecteren op jouw huidige
-            werksituatie. Wat gaat momenteel goed maar wat zou er ook beter
-            kunnen?​
-          </p>
+          <h3>
+            Na het geven van jouw jobfit score krijg je ook advies over wat je
+            kan doen om meer voldoening uit je werk te halen!
+          </h3>
 
           <button onClick={() => this.setState({ welcome: false })}>
-            Start Test
+            DOE JOBFIT TEST
           </button>
-          <p>
-            <small>
-              Het duurt een paar minuten om in te vullen. We sturen je daarna
-              een persoonlijke mail met tips en inspiratie!
-            </small>
-          </p>
         </div>
       </div>
     );
