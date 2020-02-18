@@ -5,11 +5,11 @@ var quizQuestions = [
   },
   {
     question:
-      "Ik heb het gevoel dat ik ook bij het type bedrijf werk dat helemaal bij mij past. (vb. Ik ben een echte corporate tijger en vind het heerlijk om mee te doen in het politieke spel of ik werk bij een startup en hou van de onzekerheden en dynamiek die zo'n omgeving met zich meebrengt, etc.)"
+      "Ik heb het gevoel dat ik bij het type bedrijf werk dat helemaal bij mij past. (vb. Ik ben een echte corporate tijger en vind het heerlijk om mee te doen in het politieke spel of ik werk bij een startup en hou van de onzekerheden en dynamiek die zo'n omgeving met zich meebrengt, etc.)"
   },
   {
     question:
-      'Tuurlijk, niet iedere dag kan leuk zijn maar ik haal wel het merendeel van mijn tijd veel energie uit het werk dat ik doe!'
+      'Niet iedere dag kan leuk zijn maar ik haal wel het merendeel van mijn tijd veel energie uit het werk dat ik doe!'
   },
   {
     question:
